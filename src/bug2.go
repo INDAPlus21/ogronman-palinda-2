@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"time"
 	"sync"
+	"time"
 )
 
 var wait sync.WaitGroup
+
 func main() {
 	ch := make(chan int)
 	wait.Add(1)

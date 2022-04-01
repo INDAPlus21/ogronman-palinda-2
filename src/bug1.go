@@ -4,11 +4,11 @@ import "fmt"
 
 func main() {
 	ch := make(chan string)
-	go func(){		// Now the codes goes to the function with a goroutine
+	go func() { // Now the codes goes to the function with a goroutine
 		ch <- "Hello world!"
 		close(ch)
 	}()
-	fmt.Println(<-ch)	//The print function waits for the channel to recieve information, which it gets parallell in the func
+	fmt.Println(<-ch) //The print function waits for the channel to recieve information, which it gets parallell in the func
 }
 
 // I want this program to print "Hello world!", but it doesn't work.

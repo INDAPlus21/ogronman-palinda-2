@@ -1,4 +1,5 @@
 // Stefan Nilsson 2013-03-13
+// Nils Hamrin 2022-03-30
 
 // This is a testbed to help you understand channels better.
 package main
@@ -17,19 +18,17 @@ func main() {
 
 	const strings = 32
 	const producers = 4
-	const consumers = 4
+	const consumers = 2
 
 	before := time.Now()
 	ch := make(chan string)
 	wgp := new(sync.WaitGroup)
 	wgc := new(sync.WaitGroup)
-
 	wgp.Add(producers)
+	wgc.Add(consumers)
 	for i := 0; i < producers; i++ {
 		go Produce("p"+strconv.Itoa(i), strings/producers, ch, wgp)
 	}
-
-	wgc.Add(consumers)
 	for i := 0; i < consumers; i++ {
 		go Consume("c"+strconv.Itoa(i), ch, wgc)
 	}
